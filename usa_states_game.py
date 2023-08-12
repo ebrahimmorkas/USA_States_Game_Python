@@ -36,6 +36,10 @@ while while_loop_toggler:
             print(user_input)
             states_toggler += 1
             states_entered_by_user.append(user_input)
+            turtle.penup()
+            turtle.goto(-203, -40)
+            turtle.pendown()
+            turtle.write(user_input, align="left", font=("Arial", 12, "normal"))
     else:
         print("Not present")
 screen.exitonclick()
