@@ -64,7 +64,8 @@ while while_loop_toggler:
                 turtle.penup()
                 turtle.goto(x_coordinate, y_coordinate)
                 turtle.pendown()
-                turtle.write(user_input, align="left", font=("Arial", 12, "normal"))
+                # turtle.write(user_input, align="left", font=("Arial", 12, "normal"))
+                turtle.write(user_input)
         else:
             # print("Not present")
             lives -= 1
@@ -72,6 +73,16 @@ while while_loop_toggler:
 
 if lives == 0:
     print("Oh no you are out of lives")
+
+    # Creating the loop that will print the states thar are not entered by the user and index variable will be usedto show the numberings and this loop will work when user looses the game
+    index = 1
+    print("Missing state are\n")
+    for i in range(0, len(new_list_of_states)):
+        if new_list_of_states[i] in states_entered_by_user:
+            pass
+        else:
+            print(f"{index} {new_list_of_states[i]}")
+            index += 1
 else:
     print("You won")
 
