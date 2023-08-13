@@ -3,7 +3,7 @@ import turtle as tur
 import pandas
 turtle = tur.Turtle()
 screen = tur.Screen()
-screen.title("Game")
+screen.title("lives 3/3")
 screen .addshape("blank_states_img.gif")
 tur.shape("blank_states_img.gif")
 
@@ -44,24 +44,36 @@ while_loop_toggler = True
 # Creating the list that will hold all states names that is entered by the user so this list will help us to prevent the redundancy that is  it will protect user by entering the same name multiple times
 states_entered_by_user = []
 
+# Creating the variable that will hold the user's lives
+lives = 3
+
 while while_loop_toggler:
-    if states_toggler == 2:
+    if states_toggler == 50 or lives == 0:
         while_loop_toggler = False
-    user_input = screen.textinput("STATES", "Enter the USA state").title()
-    if user_input in new_list_of_states:
-        if user_input not in states_entered_by_user:
-            print(user_input)
-            states_toggler += 1
-            states_entered_by_user.append(user_input)
-            x_coordinate, y_coordinate = find_coordinates(user_input)
-            print(x_coordinate)
-            print(y_coordinate)
-            turtle.hideturtle()
-            turtle.penup()
-            turtle.goto(-203, -40)
-            turtle.pendown()
-            turtle.write(user_input, align="left", font=("Arial", 12, "normal"))
     else:
-        print("Not present")
-print(common_list)
+        user_input = screen.textinput(f"STATES {states_toggler}/50", "Enter the USA state").title()
+        if user_input in new_list_of_states:
+            if user_input not in states_entered_by_user:
+                print(user_input)
+                states_toggler += 1
+                states_entered_by_user.append(user_input)
+                x_coordinate, y_coordinate = find_coordinates(user_input)
+                print(x_coordinate)
+                print(y_coordinate)
+                turtle.hideturtle()
+                turtle.penup()
+                turtle.goto(x_coordinate, y_coordinate)
+                turtle.pendown()
+                turtle.write(user_input, align="left", font=("Arial", 12, "normal"))
+        else:
+            # print("Not present")
+            lives -= 1
+            screen.title(f"Lives {lives}/3")
+
+if lives == 0:
+    print("Oh no you are out of lives")
+else:
+    print("You won")
+
+# print(common_list)
 screen.exitonclick()
